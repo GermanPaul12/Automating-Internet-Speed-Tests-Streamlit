@@ -11,7 +11,6 @@ df = conn.read(
 # returns DataFrame
 
 st.set_page_config(page_title='Internet Speed Hafenstraße',page_icon='🏠')
-st.title("Welcome to the Internet Speed Hafenstraße Streamlit Web-App! 🏠")
 
 st.write("Every hour the dataset is updated with the current internet speed")
 
