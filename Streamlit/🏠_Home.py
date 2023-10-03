@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 
+st.set_page_config(page_title='Internet Speed Hafenstraße',page_icon='🏠')
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
 
@@ -10,8 +11,7 @@ df = conn.read(
     #nrows=3) # How many rows to read
 # returns DataFrame
 
-st.set_page_config(page_title='Internet Speed Hafenstraße',page_icon='🏠')
-
+st.title("Internet Speed Hafenstraße")
 st.write("Every hour the dataset is updated with the current internet speed")
 
 st.write(df)
