@@ -25,7 +25,9 @@ df.Time = pd.to_datetime(df['Time'])
 st.write(df)
 
 st.header("Ping")
-st.plotly_chart(df.plot(x="Time", y="Ping in ms", title="Internet Speed Hafenstraße", xlabel="Date", ylabel="Ping in ms", grid=True, figsize=(10, 5), rot=45))
+ping_figure = px.line(df, x="Time", y="Ping in ms", title="Internet Speed Hafenstraße")
+st.plotly_chart(ping_figure)
 
 st.header("Download and Upload Speed")
-st.plotly_chart(df.plot(x="Time", y=["Download in Mbit/s", "Upload in Mbit/s"], title="Internet Speed Hafenstraße", xlabel="Date", ylabel="Speed in Mbit/s", grid=True, figsize=(10, 5), rot=45))
+speed_figure = px.line(df, x="Time", y=["Download in Mbit/s", "Upload in Mbit/s"], title="Internet Speed Hafenstraße")
+st.plotly_chart(speed_figure)
