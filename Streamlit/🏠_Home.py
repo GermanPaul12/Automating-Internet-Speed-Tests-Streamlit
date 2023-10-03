@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
+import plotly.express as px
+import pandas as pd
 
 st.set_page_config(page_title='Internet Speed Hafenstraße',page_icon='🏠')
 conn = st.experimental_connection("gsheets", type=GSheetsConnection)
