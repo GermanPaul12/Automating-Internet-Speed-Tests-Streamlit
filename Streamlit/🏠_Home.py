@@ -15,7 +15,12 @@ df = conn.read(
 
 st.title("Internet Speed Hafenstraße")
 st.write("Every hour the dataset is updated with the current internet speed")
+
+for i in df.columns():
+    if i != "Time":
+        df[i] = df[i].astype(float)
 df.Time = pd.to_datetime(df['Time'])
+
 st.write(df)
 
 st.header("Ping")
