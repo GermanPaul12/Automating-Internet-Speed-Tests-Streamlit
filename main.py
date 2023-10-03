@@ -4,7 +4,8 @@ import pandas as pd
 import os
 import re
 import datetime as dt
-
+import matplotlib.pyplot as plt
+# pip install st-gsheets-connection
 #os.system("speedtest-cli > speed.txt")
 
 os.system("speedtest-cli --secure > speed.txt")
