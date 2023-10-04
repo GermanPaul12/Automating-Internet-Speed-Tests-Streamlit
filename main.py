@@ -20,9 +20,8 @@ df = conn.read(
     usecols=[0, 1, 2, 3],)  # Which columns to read
     #nrows=3) # How many rows to read
 # returns DataFrame
-    
-pattern = r"(\d+\.\d+) Mbit/s"
-pattern_ping = r"(\d+\.\d+) ms"
+pattern = r"(\d+.\d+) Mbit/s"
+pattern_ping = r"(\d+.\d+) ms"
 
 with open("speed.txt", "r") as f:
     data = f.readlines() 
@@ -45,6 +44,6 @@ new_row.append(now.strftime(r"%d/%m/%Y %H:%M:%S"))
 df.loc[len(df)] = new_row
 
 df.to_csv("backup.csv", index=False)
-    
+
 conn.update(data=df) # Update the data with a given DataFrame.
-# Print results.    
+# Print results.
