@@ -15,11 +15,19 @@ df = conn.read(
 
 st.title("Internet Speed Hafenstraße")
 st.write("Every hour the dataset is updated with the current internet speed")
+#print(df.columns.tolist())
+
+for i in df.columns.tolist():
+    if i != "Time":
+        df[f"{i}"] = df[f"{i}"].astype(float)
+df.Time = pd.to_datetime(df['Time'])
 
 st.write(df)
 
 st.header("Ping")
-st.plotly_chart(df.plot(x="Date", y="Ping", title="Internet Speed Hafenstraße", xlabel="Date", ylabel="Speed in Mbit/s", grid=True, figsize=(10, 5), rot=45))
+ping_figure = px.line(df, x="Time", y="Ping in ms", title="Ping Speed in ms Hafenstraße")
+st.plotly_chart(ping_figure)
 
 st.header("Download and Upload Speed")
-st.plotly_chart(df.plot(x="Date", y=["Download", "Upload"], title="Internet Speed Hafenstraße", xlabel="Date", ylabel="Speed in Mbit/s", grid=True, figsize=(10, 5), rot=45))
+speed_figure = px.line(df, x="Time", y=["Download in Mbit/s", "Upload in Mbit/s"], title="Downlaod and Upload Speed in Mbit/s Hafenstraße")
+st.plotly_chart(speed_figure)
