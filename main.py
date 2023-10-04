@@ -20,8 +20,8 @@ df = conn.read(
     usecols=[0, 1, 2, 3],)  # Which columns to read
     #nrows=3) # How many rows to read
 # returns DataFrame
-pattern = r"(\d+.\d+) Mbit/s"
-pattern_ping = r"(\d+.\d+) ms"
+pattern = r"(\d+\.\d+) Mbit/s"
+pattern_ping = r"(\d+\.\d+) ms"
 
 with open("speed.txt", "r") as f:
     data = f.readlines() 
@@ -31,17 +31,19 @@ if len(data) >= 9:
     download = re.search(pattern, data[6])
     upload = re.search(pattern, data[8])
     if ping:
-        #print("Ping: ", ping.groups()[0])
+        print("Ping: ", ping.groups()[0])
         new_row.append(float(ping.groups()[0]))
     if download:
-        #print("Download: ", download.groups()[0])
+        print("Download: ", download.groups()[0])
         new_row.append(float(download.groups()[0]))
     if upload:
-        #print("Upload: ", upload.groups()[0])
+        print("Upload: ", upload.groups()[0])
         new_row.append(float(upload.groups()[0]))
 new_row.append(now.strftime(r"%d/%m/%Y %H:%M:%S"))
 
-df.loc[len(df)] = new_row
+if len(new_row) == 4: df.loc[len(df)] = new_row
+else: 
+    print("Error", new_row)
 
 df.to_csv("backup.csv", index=False)
 
