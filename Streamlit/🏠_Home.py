@@ -9,7 +9,7 @@ conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
 df = conn.read(
     ttl="10m",  # Time to cache the data
-    usecols=[0, 1, 2, 3],)  # Which columns to read
+    usecols=[0, 1, 2, 3, 4, 5],)  # Which columns to read
     #nrows=3) # How many rows to read
 # returns DataFrame
 
@@ -18,7 +18,7 @@ st.write("Every hour the dataset is updated with the current internet speed")
 #print(df.columns.tolist())
 
 for i in df.columns.tolist():
-    if i != "Time":
+    if i not in ["Time","Date"]:
         df[f"{i}"] = df[f"{i}"].astype(float)
 df.Time = pd.to_datetime(df['Time'])
 
